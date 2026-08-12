@@ -51,7 +51,7 @@ export const useCart = () => {
 
   const getTotalPrice = () => {
     return cartItems.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace('$', ''))
+      const price = parseFloat(item.price.replace(/[^\d.]/g, ''))
       return sum + price * item.quantity
     }, 0)
   }

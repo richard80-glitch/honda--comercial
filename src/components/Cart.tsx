@@ -86,7 +86,7 @@ export const Cart = ({
             </div>
             <div className="summary-row total">
               <span>Total:</span>
-              <span>${totalPrice.toFixed(2)}</span>
+              <span>RD$ {totalPrice.toLocaleString('es-DO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
           </div>
           <button className="checkout-btn">Proceder al Pago</button>
