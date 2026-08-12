@@ -1,7 +1,7 @@
-import { CartItem } from '../hooks/useCart'
+import type { CartItem } from '../hooks/useCart'
 import './Cart.css'
 
-interface CartProps {
+type CartProps = {
   isOpen: boolean
   cartItems: CartItem[]
   onClose: () => void
@@ -11,7 +11,7 @@ interface CartProps {
   totalItems: number
 }
 
-export function Cart({
+export const Cart = ({
   isOpen,
   cartItems,
   onClose,
@@ -19,7 +19,7 @@ export function Cart({
   onRemove,
   totalPrice,
   totalItems,
-}: CartProps) {
+}: CartProps) => {
   if (!isOpen) return null
 
   return (

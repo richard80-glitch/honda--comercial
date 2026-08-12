@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export interface CartItem {
+export type CartItem = {
   id: number
   name: string
   price: string
@@ -8,7 +8,7 @@ export interface CartItem {
   icon: string
 }
 
-export function useCart() {
+export const useCart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   const addToCart = (item: Omit<CartItem, 'quantity'>) => {
