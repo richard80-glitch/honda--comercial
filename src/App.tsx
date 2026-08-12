@@ -1,10 +1,10 @@
 
 import './App.css'
-import { Navbar, HeroSection, FeaturesSection } from './components'
+import { Navbar, HeroSection, FeaturesSection, ProductsSection } from './components'
 
 function App() {
   const handleExploreClick = () => {
-    console.log('Explorar Productos clicked')
+    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleContactClick = () => {
@@ -19,6 +19,7 @@ function App() {
         onSecondaryClick={handleContactClick}
       />
       <FeaturesSection />
+      <ProductsSection />
     </div>
   )
 }
