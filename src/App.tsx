@@ -1,8 +1,13 @@
 
 import './App.css'
-import { Navbar, HeroSection, FeaturesSection, ProductsSection } from './components'
+import { useState } from 'react'
+import { Navbar, HeroSection, FeaturesSection, ProductsSection, Cart } from './components'
+import { useCart } from './hooks/useCart'
 
 function App() {
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const cart = useCart()
+
   const handleExploreClick = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -13,13 +18,22 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar cartCount={cart.getTotalItems()} onCartClick={() => setIsCartOpen(true)} />
       <HeroSection
         onPrimaryClick={handleExploreClick}
         onSecondaryClick={handleContactClick}
       />
       <FeaturesSection />
-      <ProductsSection />
+      <ProductsSection onAddToCart={cart.addToCart} />
+      <Cart
+        isOpen={isCartOpen}
+        cartItems={cart.cartItems}
+        onClose={() => setIsCartOpen(false)}
+        onUpdateQuantity={cart.updateQuantity}
+        onRemove={cart.removeFromCart}
+        totalPrice={cart.getTotalPrice()}
+        totalItems={cart.getTotalItems()}
+      />
     </div>
   )
 }

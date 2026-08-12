@@ -1,6 +1,8 @@
 interface NavbarProps {
   logo?: string;
   links?: Array<{ label: string; href: string }>;
+  cartCount?: number;
+  onCartClick?: () => void;
 }
 
 export function Navbar({
@@ -10,6 +12,8 @@ export function Navbar({
     { label: "Acerca de", href: "#about" },
     { label: "Contacto", href: "#contact" },
   ],
+  cartCount = 0,
+  onCartClick,
 }: NavbarProps) {
   return (
     <nav className="navbar">
@@ -22,6 +26,9 @@ export function Navbar({
             </a>
           ))}
         </div>
+        <button className="cart-button" onClick={onCartClick}>
+          🛒 <span className="cart-count">{cartCount}</span>
+        </button>
       </div>
     </nav>
   );

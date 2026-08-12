@@ -9,9 +9,13 @@ interface Product {
 
 interface ProductsProps {
   products?: Product[];
+  onAddToCart?: (product: Omit<Product, 'category' | 'description'>) => void;
 }
 
-export function ProductsSection({ products = defaultProducts }: ProductsProps) {
+export function ProductsSection({
+  products = defaultProducts,
+  onAddToCart,
+}: ProductsProps) {
   return (
     <section className="products" id="products">
       <div className="products-header">
@@ -26,7 +30,19 @@ export function ProductsSection({ products = defaultProducts }: ProductsProps) {
             <p className="product-category">{product.category}</p>
             <p className="product-description">{product.description}</p>
             <div className="product-price">{product.price}</div>
-            <button className="btn-add-cart">Agregar al carrito</button>
+            <button
+              className="btn-add-cart"
+              onClick={() =>
+                onAddToCart?.({
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  icon: product.icon,
+                })
+              }
+            >
+              Agregar al carrito
+            </button>
           </div>
         ))}
       </div>
